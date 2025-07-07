@@ -41,7 +41,8 @@ fi
 # Extract specific information from the ELF header
 magic_number=$(echo "$elf_header" | grep "Magic:" | awk '{for(i=2;i<=NF;i++) printf "%s ", $i; print ""}' | sed 's/[[:space:]]*$//')
 class=$(echo "$elf_header" | grep "Class:" | awk -F: '{print $2}' | sed 's/^[[:space:]]*//')
-byte_order=$(echo "$elf_header" | grep "Data:" | awk -F: '{print $2}' | sed 's/^[[:space:]]*//')
+# Extract only the endianness part after the comma
+byte_order=$(echo "$elf_header" | grep "Data:" | sed 's/.*,\s*//')
 entry_point_address=$(echo "$elf_header" | grep "Entry point address:" | awk -F: '{print $2}' | sed 's/^[[:space:]]*//')
 
 # Validate that all required information was extracted
