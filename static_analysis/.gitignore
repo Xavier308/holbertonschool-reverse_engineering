@@ -6,4 +6,11 @@ main02
 main3
 task4.asm
 
+decrypt_flag.py
+analyze_encryption.py
+
+flag-1.py
+flag-2.py
+
 strings_output.txt
+task1_strings.txt
